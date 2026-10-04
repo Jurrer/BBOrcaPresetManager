@@ -1,2 +1,33 @@
 # graft's local graph cache — regenerable, not committed (run `graft build`).
 /graft/
+
+# Go binaries and build artifacts
+/bborcaprofsync
+/bborcaprofsync.exe
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+*.test
+*.out
+
+# Build output directories
+/dist/
+/build/
+/bin/
+
+# IDE and editor
+/.idea/
+/.vscode/
+*.swp
+*.swo
+*~
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Local config (lives in $HOME, not the repo — ignored if copied here)
+/.bborcaprofsync.yaml
+/.bborcaprofsync-vault/

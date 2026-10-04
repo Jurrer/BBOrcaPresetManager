@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>BBOrcaProfsync</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header>
+    <div class="header-left">
+      <h1>BBOrcaProfsync</h1>
+      <span id="health-badge" class="health-badge unknown" title="Server status">●</span>
+      <span id="health-text" class="health-text">checking…</span>
+    </div>
+    <nav>
+      <button data-tab="browse" class="tab-btn active">Browse</button>
+      <button data-tab="history" class="tab-btn">History</button>
+      <button data-tab="settings" class="tab-btn">Settings</button>
+    </nav>
+  </header>
+  <main>
+    <!-- Browse Tab -->
+    <section id="tab-browse" class="tab-section">
+      <div class="toolbar">
+        <label>Category:
+          <select id="category-select">
+            <option value="process">process</option>
+            <option value="machine">machine</option>
+            <option value="filament">filament</option>
+          </select>
+        </label>
+        <button id="refresh-profiles" class="btn">Refresh</button>
+      </div>
+      <div id="profile-list-container">
+        <p class="placeholder">Select a category and click Refresh to load profiles.</p>
+      </div>
+      <div id="diff-panel" class="diff-panel" hidden>
+        <div class="diff-header">
+          <h3 id="diff-title"></h3>
+          <button id="diff-close" class="btn btn-small">Close</button>
+        </div>
+        <div id="diff-context" class="diff-context"></div>
+        <div id="diff-table-container"></div>
+        <div id="diff-actions" class="diff-actions"></div>
+      </div>
+    </section>
+
+    <!-- History Tab -->
+    <section id="tab-history" class="tab-section" hidden>
+      <div class="toolbar">
+        <h3>Vault History</h3>
+        <button id="refresh-history" class="btn">Refresh</button>
+      </div>
+      <div id="history-container">
+        <p class="placeholder">Loading history…</p>
+      </div>
+    </section>
+
+    <!-- Settings Tab -->
+    <section id="tab-settings" class="tab-section" hidden>
+      <div class="toolbar">
+        <h3>Settings</h3>
+        <button id="refresh-settings" class="btn">Reload</button>
+      </div>
+      <form id="settings-form">
+        <fieldset>
+          <legend>BambuStudio</legend>
+          <label>User directory
+            <input type="text" id="set-bs-user-dir" placeholder="~/Library/Application Support/BambuStudio" />
+          </label>
+          <label>User ID
+            <input type="text" id="set-bs-user-id" placeholder="PPUS249810809cffcb" />
+          </label>
+        </fieldset>
+        <fieldset>
+          <legend>OrcaSlicer</legend>
+          <label>User directory
+            <input type="text" id="set-orca-user-dir" placeholder="~/Library/Application Support/OrcaSlicer" />
+          </label>
+          <label>User ID
+            <input type="text" id="set-orca-user-id" placeholder="785471be-…" />
+          </label>
+        </fieldset>
+        <fieldset>
+          <legend>Vault</legend>
+          <label>Vault path
+            <input type="text" id="set-vault-path" placeholder="~/.bborcaprofsync-vault" />
+          </label>
+        </fieldset>
+        <fieldset>
+          <legend>Server</legend>
+          <label>Port
+            <input type="number" id="set-server-port" value="9876" min="1" max="65535" />
+          </label>
+        </fieldset>
+        <fieldset>
+          <legend>Slicer version overrides</legend>
+          <label>BambuStudio version
+            <input type="text" id="set-bs-version" placeholder="(auto-detect)" />
+          </label>
+          <label>OrcaSlicer version
+            <input type="text" id="set-orca-version" placeholder="(auto-detect)" />
+          </label>
+        </fieldset>
+        <div class="form-actions">
+          <button type="submit" class="btn btn-primary">Save</button>
+          <span id="settings-feedback" class="feedback"></span>
+        </div>
+      </form>
+    </section>
+  </main>
+  <div id="error-banner" class="error-banner" hidden></div>
+  <div id="toast" class="toast" hidden></div>
+  <script src="app.js"></script>
+</body>
+</html>
